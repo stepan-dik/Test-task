@@ -22,8 +22,8 @@ def signup_view(request):
     context = {'form': form, 'title': 'Sign up', "terms": "terms"}
     return render(request, 'signup.html', context)
 
-def dynamic_lookup_view(request, username):
-    obj = User.objects.get(username=username)
+def dynamic_lookup_view(request):
+    obj = User.objects.get(request.username)
     context = {
     "object":obj
 

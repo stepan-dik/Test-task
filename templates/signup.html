@@ -27,8 +27,8 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
      <style type="text/css">
         .strike{
             display:    block;
@@ -66,24 +66,18 @@
             display: inline-block;
             margin-top: 0 5% 0 5%}
         .slash{display:inline-block;}
-        /*[type="checkbox"]:checked {opacity: 1;
-            position: relative;
-            pointer-events: none;
+        [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+            position: absolute;
+            opacity: 1;
+            pointer-events: auto;
             display: inline;}
-        [type="checkbox"]:not(:checked) {opacity: 1;
-            position: relative;
-            pointer-events: none;
-            display: inline;}
-        [type="checkbox"]:not(:disabled) {opacity: 1;
-            position: relative;
-            pointer-events: none;
-            display: inline;}*/
+        
     </style>
         <h2 class="titleblock"> SIGN UP WITH </h2>
             <div class="social">
 
                     <div class="btn white darken-4 col s10 m4">
-                         <a href="{% url 'social:begin' 'google-oauth2' %}" style="text-transform:none; margin-left: 15px; padding: 5px">
+                         <a href="{% url 'social:begin' 'google-oauth2' %}" style="text-transform:none; margin-left: 15px; padding: 0px">
                              <div class="left">
                                  <img width="20px" alt="Google &quot;G&quot; Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" style="position: relative; top: 4px" />
                              </div>
@@ -92,24 +86,22 @@
                     </div>
 
 
-                    <!-- <a href="{% url 'social:begin' 'google-oauth2' %}">Google</a> -->
                 <div class="slash" style="margin: 0 5% 0 5%; width: 1%; font-size: 20px ">/</div>
-                <div class="fb-login-button" data-width="" data-size="medium" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false" style="height:32px"></div>
+                <div class="fb-login-button" data-width="20px" data-size="medium" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false" style="height:32px"></div>
             </div>
     <div class="strike">
         <span>
             or
         </span>
     </div>
-    <div  >
+    <div>
     <form action="." method="POST" >
         {% csrf_token %}
         {% if error %}
         {{ error }}
         {% endif %}
         {{ form.as_p }}
-        <p style="display: inline; margin-left: 10 0"> I'd like to receive PlacePass news and offers</p>
-        <br>
+        <p style="display: inline; margin: 0 15% 0 4%"> I'd like to receive PlacePass news and offers</p>
         <p> By signing up I agree to the PlacePass <a href= {{ terms }}>Terms of use</a> and <a href={{privacy}}>Privacy policy</a></p>
         <input type="submit" name="submit" value="Sign up" />
     </form>
