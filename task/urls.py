@@ -21,9 +21,10 @@ import social_django.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', signup_view, name='index'),
+    path('signup/', signup_view, name='signup'),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    re_path('/', include('social_django.urls', namespace='social')),
-    path('<str:username>/', dynamic_lookup_view, name="username")
+    re_path('social', include('social_django.urls', namespace='social')),
+    path('<str:username>/', dynamic_lookup_view, name="username"),
+    path('', dynamic_lookup_view, name="home")
 ]

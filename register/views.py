@@ -16,16 +16,18 @@ def signup_view(request):
             ads = form.cleaned_data.get('ads')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('<str:username>')
     else:
         form = SignUpForm()
     context = {'form': form, 'title': 'Sign up', "terms": "terms"}
     return render(request, 'signup.html', context)
 
-def dynamic_lookup_view(request, username):
-    obj = User.objects.get(username=username)
-    context = {
-    "object":obj
-
-    }
-    return render(request, "", context)
+def dynamic_lookup_view(request, username=None):
+    print(request.user)
+    # obj = User.objects.get(request.user)
+    # print(obj)
+    context = {"object":request.user}
+    if str(request.user) == "AnonymousUser":
+        return redirect('signup')
+    
+    return render(request, 'user.html', context)

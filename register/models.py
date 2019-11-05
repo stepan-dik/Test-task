@@ -8,3 +8,6 @@ class User(models.Model):
     password1 = models.CharField(max_length=30)
     password2 = models.CharField(max_length=30)
     ads  = models.BooleanField(default=True)
+
+    def get_absolute_url(self):
+    	return reverse("", kwargs={"username": self.username})
