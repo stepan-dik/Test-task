@@ -11,25 +11,27 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+with open(os.path.join(BASE_DIR, 'config.json')) as config_file:
+    config = json.load(config_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^n-zc6n39)w59xsnfbf6l3pokj+pw@8j%6b()p1jwqo(=#_nohd^z9'
+SECRET_KEY = config["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [ "omaewa.xyz", "10.128.0.2", "127.0.0.1:8000", '*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
-print('settings')
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,9 +51,9 @@ AUTHENTICATION_BACKENDS = [
 
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "774154919987-ps019guic1bvngpc1hj6lt2sdrimqq7l.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config["SOCIAL_AUTH_GOOGLE_OAUTH2_KEY"]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'CZwrnlsCJoxX4Je_Uyb_XDkJ'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config["SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -134,6 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT = 'login'
