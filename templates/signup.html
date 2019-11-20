@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-signup.html" %}
 {% block content %}
 <style type="text/css">
     .form_gen{display: block; align-self: center;}
@@ -13,10 +13,8 @@
           cookie     : true,
           xfbml      : true,
           version    : 'v5.0'
-        });
-          
-        FB.AppEvents.logPageView();   
-          
+        });  
+        FB.AppEvents.logPageView();         
       };
 
       (function(d, s, id){
@@ -76,8 +74,8 @@
         <h2 class="titleblock"> SIGN UP WITH </h2>
             <div class="social">
 
-                    <div class="btn white darken-4 col s10 m4">
-                         <a href="{% url 'social:begin' 'google-oauth2' %}" style="text-transform:none; margin-left: 15px; padding: 0px">
+                    <div class="btn white darken-4 col s10 m4" style="width: 30%">
+                         <a href="{% url 'social:begin' 'google-oauth2' %}" style="text-transform:none; margin-left: 5px; padding: 0px">
                              <div class="left">
                                  <img width="20px" alt="Google &quot;G&quot; Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" style="position: relative; top: 4px" />
                              </div>
@@ -87,25 +85,28 @@
 
 
                 <div class="slash" style="margin: 0 5% 0 5%; width: 1%; font-size: 20px ">/</div>
-                <div class="fb-login-button" data-width="20px" data-size="medium" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false" style="height:32px"></div>
+                <div class="fb-login-button" data-width="20px" data-size="medium" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
             </div>
     <div class="strike">
         <span>
             or
         </span>
     </div>
-    <div>
-    <form action="." method="POST" >
+    <form id="form" action="." method="POST" >
         {% csrf_token %}
         {% if error %}
         {{ error }}
         {% endif %}
-        {{ form.as_p }}
-        <p style="display: inline; margin: 0 15% 0 4%"> I'd like to receive PlacePass news and offers</p>
-        <p> By signing up I agree to the PlacePass <a href= {{ terms }}>Terms of use</a> and <a href={{privacy}}>Privacy policy</a></p>
-        <input type="submit" name="submit" value="Sign up" />
+        {{ form.as_p}}
+        <p style="display: inline; margin: 0 15% 0 4%"> I'd like to receive news and offers</p>
+        <br>
+        <small> By signing up I agree to the <a href= "{% url 'terms' %}" >Terms of use</a> and <a href="{% url 'privacy' %}">Privacy policy</a></small>
+        <br>
+        <br>
+        <input type="submit" name="submit" value="REGISTER"/>
     </form>
-    </div>
+    <p style="display: block;"> Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+    
 </div>
 {% endblock %}
 

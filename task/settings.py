@@ -25,11 +25,11 @@ SECRET_KEY = '^n-zc6n39)w59xsnfbf6l3pokj+pw@8j%6b()p1jwqo(=#_nohd^z9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ "omaewa.xyz", "10.128.0.2", "127.0.0.1:8000", '*']
 
 
 # Application definition
-
+print('settings')
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,13 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
-    "register"
-
+    'register',
+    'crispy_forms',
 ]
 
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOpenId',
     'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+
 ]
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "774154919987-ps019guic1bvngpc1hj6lt2sdrimqq7l.apps.googleusercontent.com"
@@ -132,3 +134,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT = 'login'

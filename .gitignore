@@ -1,0 +1,5 @@
+register/__pycache__ 
+task/__pycache__
+docker-compose.yml
+db.sqlite3
+register/migrations
